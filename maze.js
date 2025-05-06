@@ -33,12 +33,12 @@
   
       // Paredes internas – vertical e horizontal
       { x: 100, y: 0, w: WALL_THICKNESS, h: 210 },
-      { x: 15, y: 40, w: WALL_THICKNESS, h: 210 },
-      { x: 180, y: 0, w: WALL_THICKNESS, h: 350 },
+      { x: 50, y: 0, w: WALL_THICKNESS, h: 210 },
+      { x: 180, y: 0, w: WALL_THICKNESS, h: 500 },
        
-      { x: 50, y: 420, w: 200, h: WALL_THICKNESS },
-      { x: 50, y: 120, w: 200, h: WALL_THICKNESS },
-      { x: 50, y: 300, w: 200, h: WALL_THICKNESS }
+      { x: 50, y: 200, w: 200, h: WALL_THICKNESS },
+      
+      { x: 50, y: 300, w: 200, h: WALL_THICKNESS },
       
 
   
