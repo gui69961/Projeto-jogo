@@ -32,13 +32,21 @@
       { x: width - WALL_THICKNESS, y: 0, w: WALL_THICKNESS, h: height }, // direita
   
       // Paredes internas – vertical e horizontal
-      { x: 100, y: 0, w: WALL_THICKNESS, h: 210 },
-      { x: 50, y: 0, w: WALL_THICKNESS, h: 210 },
-      { x: 180, y: 0, w: WALL_THICKNESS, h: 500 },
-       
-      { x: 50, y: 200, w: 200, h: WALL_THICKNESS },
+      { x: 150, y: 0, w: WALL_THICKNESS, h: 500 },
+      { x: 50, y: 0, w: WALL_THICKNESS, h: 250},
       
-      { x: 50, y: 300, w: 200, h: WALL_THICKNESS },
+      { x: 50, y: 200, w: 200, h: WALL_THICKNESS }, // topo
+      { x: 50, y: 300, w: 13, h: height }, // esquerda
+      { x: 100, y: 300, w: 13, h: 200 }, // esquerda
+      { x: 100, y: 500 , w: 100, h: 10 }, // topo
+      { x: 200, y: 310, w: 13, h: 200 }, // esquerda
+      { x: 50, y: 550 , w: 200, h: 10 }, // topo
+      { x: 250, y: 270, w: 13, h: 500}, // esquerda
+      { x: 300, y: 200, w: 13, h: 600}, // esquerda
+      { x: 200, y: 150 , w: 150, h: 10 }, // topo
+      { x: 200, y: 0, w: WALL_THICKNESS, h: 110},
+      
+      
       
 
   
