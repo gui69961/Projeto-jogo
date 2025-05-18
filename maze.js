@@ -20,6 +20,7 @@
   };
 
   let dragging = false;
+  let gameEnded = false; 
 
   const walls = [
     { x: 0, y: 0, w: width, h: WALL_THICKNESS },
@@ -98,32 +99,54 @@
     );
   }
 
-  function restartGame() {
-    player.x = WALL_THICKNESS + PLAYER_RADIUS + 5;
-    player.y = height - WALL_THICKNESS - PLAYER_RADIUS - 5;
-    messageEl.classList.remove('show');
-    drawMaze();
+  function gameLost() {
+    gameEnded = true;
+    messageEl.innerHTML = "Você perdeu!<br /><button id='restartBtn' aria-label='Reiniciar o jogo'>Jogar novamente</button>";
+    messageEl.classList.add('show');
+    messageEl.focus();
+
+    const newRestartBtn = messageEl.querySelector('#restartBtn');
+    newRestartBtn.addEventListener('click', () => {
+      restartGame();
+    });
   }
 
   function gameWon() {
+    gameEnded = true;
+    messageEl.innerHTML = "Você ganhou!<br /><button id='restartBtn' aria-label='Reiniciar o jogo'>Jogar novamente</button>";
     messageEl.classList.add('show');
+    messageEl.focus();
+
+    const newRestartBtn = messageEl.querySelector('#restartBtn');
+    newRestartBtn.addEventListener('click', () => {
+      restartGame();
+    });
+  }
+
+  function restartGame() {
+    gameEnded = false;
+    player.x = WALL_THICKNESS + PLAYER_RADIUS + 5;
+    player.y = height - WALL_THICKNESS - PLAYER_RADIUS - 5;
+    messageEl.classList.remove('show');
+    messageEl.innerHTML = '';
+    drawMaze();
   }
 
   function onPointerDown(e) {
     e.preventDefault();
-    if (messageEl.classList.contains('show')) return;
+    if (gameEnded) return;
     dragging = true;
     movePlayer(e);
   }
 
   function onPointerMove(e) {
-    if (!dragging) return;
+    if (!dragging || gameEnded) return;
     movePlayer(e);
   }
 
   function onPointerUp(e) {
     dragging = false;
-    if (!checkWin()) {
+    if (!checkWin() && !gameEnded) {
       restartGame();
     }
   }
@@ -151,7 +174,8 @@
     player.y = pos.y;
 
     if (checkCollisionWithWalls()) {
-      restartGame();
+      gameLost();
+      drawMaze();
       return;
     }
 
@@ -175,14 +199,10 @@
     canvas.addEventListener('touchend', onPointerUp);
     canvas.addEventListener('touchcancel', onPointerUp);
 
-    restartBtn.addEventListener('click', () => {
-      restartGame();
-      canvas.focus();
-    });
 
-    canvas.setAttribute('tabindex', '0');
     canvas.style.outline = 'none';
   }
 
   init();
 })();
+

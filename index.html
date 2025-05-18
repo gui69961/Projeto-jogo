@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<title>Jogo do Labirinto</title>
-<link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Jogo do Labirinto</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="gameContainer" role="main" aria-label="Jogo do Labirinto">
-    <canvas id="mazeCanvas" width="350" height="600" aria-describedby="desc"></canvas>
-    <div id="message" role="alert" aria-live="assertive" tabindex="0">
-      Você ganhou!<br />
-      <button id="restartBtn" aria-label="Reiniciar o jogo">Jogar novamente</button>
+    <div id="gameContainer" role="main" aria-label="Jogo do Labirinto">
+        <canvas id="mazeCanvas" width="350" height="600" aria-describedby="desc"></canvas>
+        <div id="message" role="alert" aria-live="assertive" tabindex="0">
+            Você ganhou!<br />
+            <button id="restartBtn" aria-label="Reiniciar o jogo">Jogar novamente</button>
+        </div>
     </div>
-  </div>
-  <p id="desc" hidden>
-    Labirinto onde você controla um círculo azul movendo o mouse ou toque. 
-    Evite tocar nas paredes; se tocar, o jogo reinicia. 
-    Chegue no quadrado verde para vencer.
-  </p>
+    <p id="desc" hidden>
+        Labirinto onde você controla um círculo azul movendo o mouse ou toque. 
+        Evite tocar nas paredes; se tocar, o jogo reinicia. 
+        Chegue no quadrado verde para vencer.
+    </p>
 
-  <script src="maze.js"></script>
+    <script src="maze.js"></script>
 </body>
 </html>
