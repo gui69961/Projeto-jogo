@@ -12,7 +12,6 @@
   const GOAL_COLOR = '#44ff55';
 
   const messageEl = document.getElementById('message');
-  const restartBtn = document.getElementById('restartBtn');
 
   let player = {
     x: WALL_THICKNESS + PLAYER_RADIUS + 5,
@@ -20,7 +19,7 @@
   };
 
   let dragging = false;
-  let gameEnded = false; 
+  let gameEnded = false;
 
   const walls = [
     { x: 0, y: 0, w: width, h: WALL_THICKNESS },
@@ -132,11 +131,20 @@
     drawMaze();
   }
 
+  function isPointInCircle(x, y, circle) {
+    const dx = x - circle.x;
+    const dy = y - circle.y;
+    return dx * dx + dy * dy <= circle.radius * circle.radius;
+  }
+
   function onPointerDown(e) {
     e.preventDefault();
     if (gameEnded) return;
-    dragging = true;
-    movePlayer(e);
+    const pos = getCanvasPos(e);
+    if (isPointInCircle(pos.x, pos.y, { x: player.x, y: player.y, radius: PLAYER_RADIUS })) {
+      dragging = true;
+      movePlayer(e);
+    }
   }
 
   function onPointerMove(e) {
@@ -146,9 +154,6 @@
 
   function onPointerUp(e) {
     dragging = false;
-    if (!checkWin() && !gameEnded) {
-      restartGame();
-    }
   }
 
   function getCanvasPos(e) {
@@ -165,7 +170,7 @@
     let y = clientY - rect.top;
     x = Math.max(PLAYER_RADIUS, Math.min(width - PLAYER_RADIUS, x));
     y = Math.max(PLAYER_RADIUS, Math.min(height - PLAYER_RADIUS, y));
-    return {x, y};
+    return { x, y };
   }
 
   function movePlayer(e) {
@@ -194,15 +199,16 @@
     canvas.addEventListener('mouseup', onPointerUp);
     canvas.addEventListener('mouseleave', onPointerUp);
 
-    canvas.addEventListener('touchstart', onPointerDown, {passive: false});
-    canvas.addEventListener('touchmove', onPointerMove, {passive: false});
+    canvas.addEventListener('touchstart', onPointerDown, { passive: false });
+    canvas.addEventListener('touchmove', onPointerMove, { passive: false });
     canvas.addEventListener('touchend', onPointerUp);
     canvas.addEventListener('touchcancel', onPointerUp);
-
 
     canvas.style.outline = 'none';
   }
 
   init();
 })();
+
+
 
